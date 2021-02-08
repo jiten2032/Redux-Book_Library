@@ -3,10 +3,8 @@ import { connect } from 'react-redux';
 
 export class Book extends Component {
 
-   
-
     render() {
-        // console.log(this.props);
+        console.log(this.props);
         const { Book } = this.props;
         let BookList = Book.length ? (
             Book.map(Books => {
@@ -23,10 +21,10 @@ export class Book extends Component {
                                     <td className="col-md-2">{Books.BookGeners}</td>
                                     <td className="col-md-1">{Books.BookPublishedYear}</td>
                                     <td className="col-md-2">
-                                        <button className="btn btn-primary">Edit</button>
+                                        <button className="btn btn-primary" onClick={() => { this.props.editBook(Books.Sl) }}>Edit</button>
                                     </td>
                                     <td className="col-md-2">
-                                        <button onClick={()=>{this.props.deletBook(Books.Sl)}} className="btn btn-primary">Delet</button>
+                                        <button onClick={() => { this.props.deletBook(Books.Sl) }} className="btn btn-primary">Delet</button>
                                     </td>
 
                                 </tr>
@@ -73,6 +71,11 @@ const mapDispatchToProps = (dispatch) => {
         deletBook: (id) => {
             dispatch({
                 type: 'DELET_BOOK', Sl: id
+            })
+        },
+        editBook: (id) => {
+            dispatch({
+                type: 'EDIT_BOOK', Sl: id
             })
         }
     }

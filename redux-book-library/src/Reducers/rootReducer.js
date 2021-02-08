@@ -1,4 +1,4 @@
-import { Book } from "../Book";
+// import { Book } from "../Book";
 
 const initstate = {
     Book: []
@@ -17,6 +17,14 @@ const rootReducer = (state = initstate, action) => {
             return {
                 Book: NewBook
             }
+        case "EDIT_BOOK":
+            let editedBook = state.Book.filter(editBooks => {
+                return (action.Sl === editBooks.Sl)
+
+            });
+            return {
+                Book:editedBook
+            }
 
         default:
 
@@ -25,13 +33,5 @@ const rootReducer = (state = initstate, action) => {
                 ...state
             }
     }
-
-
-
-
-
-
-
-
 }
 export default rootReducer;
